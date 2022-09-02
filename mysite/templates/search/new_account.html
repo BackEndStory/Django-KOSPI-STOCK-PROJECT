@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Westagram</title>
+    <link rel=stylesheet href="style/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="logo">주식 존망</div>
+        <form class="login__input"  action=""  method="post">
+            {% csrf_token %}
+            < 회원가입하기>
+            {% include "form_errors.html" %}
+        <article>
+            <div class="login_name">
+                <input type="text" placeholder="이름" class="nameValue"  name="first_name" value="{{ form.name.value|default_if_none:'' }}">
+            </div>
+            <div class="login_ID">
+                <input type="text" placeholder="아이디" class="IDValue" name="username" value="{{ form.username.value|default_if_none:'' }}">
+            </div>
+            <div class="login_password">
+                <input type="password" placeholder="비밀번호" class="passwordValue" name="password1"  value="{{ form.password1.value|default_if_none:'' }}">
+             <div class="login_passwordagain">
+                <input type="password" placeholder="비밀번호 확인" class="passwordagainValue" name="password2" value="{{ form.password2.value|default_if_none:'' }}">
+                </div>
+                <div class="login_password">
+                    <input type="email" placeholder="이메일" class="passwordValue" name="email">
+                </div>
+            </div>
+            <div>
+              <button class="login_btn" type="submit" value="register">회원가입 하기</button>
+            </div>
+            <div class="links">
+
+                <span>계정이 있으신가요?</span>
+                <a href="{% url 'common:login' %}">로그인</a>
+
+            </div>
+            <div class="box">
+
+            <div class="noneunderline"></div>
+
+
+
+      </div>
+      </article>
+      </form>
+    </main>
+    <script src='./js/login.js'></script>
+</body>
+</html>
+<style>
+    * {
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    height: 800px;
+    width: 450px;
+    padding: 50px 0;
+    border: #EFEFEF solid 2px;
+    margin: 100px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    margin-bottom: 50px;
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+}
+
+input {
+    height: 45px;
+    width: 300px;
+    margin-bottom: 10px;
+    background-color:#FAFAFA;
+    border: #EFEFEF 1px solid;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.login_btn {
+    width: 300px;
+    height: 35px;
+    border-radius: 6px;
+    border: white;
+    margin-bottom: 100px;
+    background-color: #C4E1FB;
+    color: white;
+    font-size: 17px;
+}
+
+.login_btn:hover {
+    cursor: pointer;
+}
+
+footer {
+    color: #345E87;
+}
+.noneunderline {
+    text-decoration:none;
+}
+.haveAccount {
+    background-color: #fcfcfc;
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+}
+
+.haveAccount p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #333333;
+}
+
+.haveAccount p a{
+    font-weight: 600;
+    color: #248ae3;
+}
+.box {
+  height: 50px;
+}
+.links{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    a{
+       color: blue; text-decoration: none;
+    }
+    .text2{
+       color : blue;
+    }
+    </style>

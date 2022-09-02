@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <a href="{% url 'common:login' %}"><button class="snip1535 hover">ENTER</button></a>
+    <script>
+        // https://www.youtube.com/watch?v=MGj7fnQdpE4
+        let canvas = document.getElementById("canvas"),
+            ctx = canvas.getContext("2d"),
+            width = (canvas.width = window.innerWidth),
+            height = (canvas.height = window.innerHeight),
+            cX = width / 2,
+            cY = height / 2;
+
+        let fl = 3,
+            shapes = [],
+            numShapes = 1000;
+
+        for (let i = 0; i < numShapes; i++) {
+            shapes[i] = {
+                x: rand(-1000, 1000),
+                y: rand(-1000, 1000),
+                z: rand(0, 10000)
+            }
+        }
+
+        ctx.translate(cX, cY);
+
+        function resetFrame() {
+            //ctx.clearRect(-cX, -cY, width, height);
+            ctx.fillStyle = "rgba(0,0,0,.5)";
+            ctx.fillRect(-cX, -cY, width, height);
+        }
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function draw() {
+            resetFrame();
+        }
+        function update() {
+            ctx.fillStyle = "#ffffff";
+            for (let i = 0; i < numShapes; i++) {
+                let shape = shapes[i],
+                    perspective = fl / (fl + shape.z);
+
+                ctx.save();
+                ctx.translate(shape.x * perspective, shape.y * perspective);
+                ctx.scale(perspective, perspective);
+                ctx.fillRect(-3, -3, 6, 6);
+                ctx.restore();
+
+                shape.z += 50;
+                if (shape.z > 10000) {
+                    shape.z = 0;
+                }
+                fl += .01;
+                if (fl > 5000) {
+                    fl = 3;
+                }
+            }
+        }
+
+        function loop() {
+            draw();
+            update();
+            window.requestAnimationFrame(loop);
+        }
+
+        loop();
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js">
+        $(".hover").mouseleave(
+            function () {
+                $(this).removeClass("hover");
+            }
+        );
+    </script>
+
+
+</body>
+
+</html>
+<style>
+    body {
+        background-color: #111;
+        width:100vw;
+        height:100vh;
+        overflow:hidden;
+    }
+
+    canvas {
+        background-color: rgba(0, 0, 0, 0);
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width:100vw;
+        height:100vh;
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
+    .snip1535 {
+        background-color: #080808;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'BenchNine', Arial, sans-serif;
+        font-size: 1em;
+        font-size: 22px;
+        line-height: 1em;
+        margin: 15px 40px;
+        outline: none;
+        padding: 12px 40px 10px;
+        position: relative;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .snip1535:before,
+    .snip1535:after {
+        border-color: transparent;
+        -webkit-transition: all 0.25s;
+        transition: all 0.25s;
+        border-style: solid;
+        border-width: 0;
+        content: "";
+        height: 24px;
+        position: absolute;
+        width: 24px;
+    }
+
+    .snip1535:before {
+        border-color: #080808;
+        border-right-width: 2px;
+        border-top-width: 2px;
+        right: -5px;
+        top: -5px;
+    }
+
+    .snip1535:after {
+        border-bottom-width: 2px;
+        border-color: #030303;
+        border-left-width: 2px;
+        bottom: -5px;
+        left: -5px;
+    }
+
+    .snip1535:hover,
+    .snip1535.hover {
+        background-color: #0a0a0a;
+    }
+
+    .snip1535:hover:before,
+    .snip1535.hover:before,
+    .snip1535:hover:after,
+    .snip1535.hover:after {
+        height: 100%;
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Westagram</title>
+    <link rel=stylesheet href="style/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="logo">주식 존망</div>
+        <article>
+        <form method="post" class="post-form" action="{% url 'search:data_search' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+            {% for message in messages %}
+          <p class="message">{{ message }}</p>
+            {% endfor %}
+            <label >시작일</label>
+            <div class="date1">
+                <input type="date" name="startdate" placeholder="시작일" class="datevalue">
+            </div>
+            <label >종료일</label>
+            <div class="date2">
+                <input type="date" name="finishdate" placeholder="종료일" class="dateValue">
+            </div>
+            <div class="search-box">
+
+                <input type="text"  name="stock_name" class="search-txt" placeholder="검색">
+                <a class="search-btn" href="#">
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+              <button class="down_btn" type="submit">다운로드</button>
+         </form>
+
+            <form action="{% url 'search:stock_data_graph'  %}">
+              <button class="graph_btn" type=submit>GRAPH</button>
+            </form>
+            <div class="box">
+            <div class="horizonAndOrWrap">
+                <hr class="leftHr">
+                <div class="or">또는</div>
+                <hr class="rightHr">
+            </div>
+            <div class="noneunderline"></div>
+        </div></article>
+
+        <div class="haveAccount">
+            {% if user.is_authenticated %}
+            <p>
+                <a onclick="return confirm('정말 로그아웃하시겠습니까?');" class="noneunderline" href="{% url 'common:logout' %}">{{ user.first_name }}님 Logout</a>
+            </p>
+        </div>
+        <div class="haveAccount">
+             <p>
+                <a href="{% url 'search:change_pw' %}" class="noneunderline">회원정보 변경</a>
+            </p>
+            {% endif %}
+        </div>
+    </main>
+    <script src='./js/login.js'></script>
+</body>
+</html>
+<style>
+    * {
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+main {
+    height: 800px;
+    width: 450px;
+    padding: 50px 0;
+    border: #EFEFEF solid 2px;
+    margin: 100px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.logo {
+    margin-bottom: 50px;
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+}
+
+input {
+    height: 45px;
+    width: 300px;
+    margin-bottom: 10px;
+    background-color:#FAFAFA;
+    border: #EFEFEF 1px solid;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+input:focus {
+    outline: none;
+}
+
+.graph_btn {
+    width: 300px;
+    height: 35px;
+    border-radius: 6px;
+    border: white;
+    margin-bottom: 100px;
+    background-color: #ccaeb6;
+    color: white;
+    font-size: 17px;
+
+
+}
+
+.login_btn:hover {
+    cursor: pointer;
+}
+.down_btn{
+    width: 300px;
+    height: 35px;
+    border-radius: 6px;
+    border: white;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    background-color: #b5cbd8;
+    color: white;
+    font-size: 17px;
+}
+footer {
+    color: #345E87;
+}
+.noneunderline {
+    text-decoration:none;
+}
+.haveAccount {
+    background-color: #fcfcfc;
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+}
+
+.haveAccount p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #333333;
+}
+
+.haveAccount p a{
+    font-weight: 600;
+    color: #248ae3;
+}
+.box {
+  height: 50px;
+}
+.message{
+ font-weight: bolder;
+}
+    </style>

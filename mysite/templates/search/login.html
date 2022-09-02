@@ -1,0 +1,208 @@
+
+<!DOCTYPE html><html>
+<head>
+
+</head>
+<body>
+<div class="v21_50">
+<div><a href="{% url 'search:index' %}" ><button class="v21_54">Main</button></a></div>
+
+
+<form method="post" class="" action="{% url 'common:login' %}">
+      {% csrf_token %}
+    {% include "form_errors.html" %}
+
+
+
+    <div class="name"></div>
+    <div class="v50_46">
+        <label class="v21_52" for='username'>ID</label>
+         <input class="v21_55" type="text" name="username" id='username'
+                        value="{{ form.username.value|default_if_none:'' }}" >
+
+    </div>
+    <div class="v50_47">
+    <label class="v21_53" for="password">Password</label>
+         <input class="v21_56"
+                 value="{{ form.password.value|default_if_none:'' }}" id="password"type="password" name="password" >
+    </div>
+    <a class="v21_57" href="{% url 'common:ForgotIDview'  %}">아이디 찾기</a>
+    <a class="v21_58" href="{% url 'common:ForgotPWview'  %}">비밀번호 찾기</a>
+    <div class="v50_48">
+        <div class="v21_59">
+
+    </div>
+        <button type="submit"  class="v21_60"  >로그인 하기</button>
+
+    </div>
+
+
+</form>
+</div>
+</body>
+</html> <br/><br/>
+<style>* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.v21_50 {
+  width: 771px;
+  height: 668px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.name {
+  color: #fff;
+}
+.v21_54 {
+  width: 80px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 27px;
+  left: 25px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v50_46 {
+  width: 592px;
+  height: 49px;
+  background: url("../images/v50_46.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 223px;
+  left: 105px;
+  overflow: hidden;
+}
+.v21_52 {
+  width: 115px;
+  color: rgba(0,0,0,1);
+  position: relative;
+  top: 0px;
+  left: 0px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v21_55 {
+  width: 592px;
+  height: 21px;
+  background: rgba(217,217,217,1);
+  opacity: 1;
+  position: absolute;
+  top: 28px;
+  left: 0px;
+  overflow: hidden;
+}
+.v50_47 {
+  width: 592px;
+  height: 50px;
+  background: url("../images/v50_47.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 280px;
+  left: 104px;
+  overflow: hidden;
+}
+.v21_53 {
+  width: 131px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v21_56 {
+  width: 592px;
+  height: 21px;
+  background: rgba(217,217,217,1);
+  opacity: 1;
+  position: absolute;
+  top: 29px;
+  left: 0px;
+  overflow: hidden;
+}
+.v21_57 {
+  width: 139px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 408px;
+  left: 229px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+.v21_58 {
+  width: 145px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 408px;
+  left: 400px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+.v50_48 {
+  width: 233px;
+  height: 37px;
+  background: url("../images/v50_48.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 352px;
+  left: 274px;
+  overflow: hidden;
+}
+.v21_59 {
+  width: 233px;
+  height: 37px;
+  background: rgba(0,0,0,1);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  overflow: hidden;
+}
+.v21_60 {
+  width: 211px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: center;
+}
+</style>
